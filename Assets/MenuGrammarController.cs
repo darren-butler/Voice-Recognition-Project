@@ -5,22 +5,22 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.Windows.Speech;
 
-public class GrammarController : MonoBehaviour
+public class MenuGrammarController : MonoBehaviour
 {
-
     private GrammarRecognizer gr;
-    public GameObject character;
-
+    [SerializeField] private MainMenu mm;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        gr = new GrammarRecognizer(Path.Combine(Application.streamingAssetsPath , "Grammar.xml"), ConfidenceLevel.Low);
+        
+
+        gr = new GrammarRecognizer(Path.Combine(Application.streamingAssetsPath, "Grammar.xml"), ConfidenceLevel.Low);
         Debug.Log("Grammar Loaded");
         gr.OnPhraseRecognized += Gr_OnPhraseRecognized;
         gr.Start();
-        if (gr.IsRunning) 
+        if (gr.IsRunning)
             Debug.Log("Recognizer Running");
     }
 
@@ -28,27 +28,25 @@ public class GrammarController : MonoBehaviour
     {
         StringBuilder message = new StringBuilder();
         SemanticMeaning[] meanings = args.semanticMeanings;
-        string direction = "";
-        foreach(SemanticMeaning meaning in meanings)
+        foreach (SemanticMeaning meaning in meanings)
         {
             string keyString = meaning.key.Trim();
             string valueString = meaning.values[0].Trim();
             message.Append("Key: " + keyString + " , Value: " + valueString + " ");
-            if(keyString == "direction")
-            {
-                direction = valueString;
-            }
 
-            switch(valueString)
+
+            switch (valueString)
             {
-                case "move":
-                    character.GetComponent<MovementController>().Move(direction);
+                case "play":
+                    mm.Play();
                     break;
-
+                case "quit":
+                    mm.Quit();
+                    break;
                 default:
                     break;
             }
-            
+
         }
 
 
@@ -63,5 +61,11 @@ public class GrammarController : MonoBehaviour
             gr.OnPhraseRecognized -= Gr_OnPhraseRecognized;
             gr.Stop();
         }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
     }
 }

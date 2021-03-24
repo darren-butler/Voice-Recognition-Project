@@ -1,24 +1,48 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<grammar xml:lang="en" root="yesorno"
+<grammar xml:lang="en" root="topLevel"
 tag-format="semantics/1.0" version="1.0"
 xmlns="http://www.w3.org/2001/06/grammar">
 
-	<rule id="yesorno">
+	<rule id="topLevel">
 		<one-of>
 			<item>
-				<ruleref uri="#yes"/>
+				<ruleref uri="#move" />
 			</item>
 			<item>
-				<ruleref uri="#no"/>
+				<ruleref uri="#play" />
 			</item>
 		</one-of>
 	</rule>
 
-	<rule id="yes">
-		<item>yes</item>
+	<rule id="play">
+		<one-of>
+			<item>play</item>
+		</one-of>
+	</rule>
+	
+	<rule id="move">
+		<tag>out.action="move";</tag>
+		<one-of>
+			<item>move</item>
+		</one-of>
+		<ruleref uri="#movedirection"/>
+		<tag>out.direction = rules.latest();</tag>
 	</rule>
 
-	<rule id="no">
+	<rule id="movedirection">
+		<one-of>
+			<item>up</item>
+			<item>down</item>
+			<item>left</item>
+			<item>right</item>
+		</one-of>
+	</rule>
+	
+	
+	
+	
+	
+	<rule id="no" >
 		<item>no</item>
 	</rule>
 
