@@ -7,18 +7,18 @@ public class Timer : MonoBehaviour
 {
     [SerializeField] private float time = 10;
     [SerializeField] private GameObject timerTextObject;
-    private bool gameOver = false;
+    public bool timeUp = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        gameOver = false;
+        timeUp = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!gameOver)
+        if(!timeUp)
         {
             if (time > 0)
             {
@@ -28,9 +28,9 @@ public class Timer : MonoBehaviour
             else
             {
                 time = -1;
-                gameOver = true;
-
+                timeUp = true;
                 DisplayTime(time);
+                GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().EndGame();
             }
         }
     }
