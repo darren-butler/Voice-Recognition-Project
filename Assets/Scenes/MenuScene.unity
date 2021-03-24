@@ -618,7 +618,7 @@ GameObject:
   - component: {fileID: 1361461897}
   - component: {fileID: 1361461898}
   m_Layer: 0
-  m_Name: MenuGrammarController
+  m_Name: GrammarController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

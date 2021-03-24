@@ -17,6 +17,7 @@ xmlns="http://www.w3.org/2001/06/grammar">
 	<rule id="play">
 		<one-of>
 			<item>play</item>
+			<item>start</item>
 		</one-of>
 	</rule>
 	
