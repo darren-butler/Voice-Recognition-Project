@@ -1,17 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    private bool gameOver = false;
+    private bool gameOver;
     private int playerScore;
 
     // Start is called before the first frame update
     void Start()
     {
         playerScore = 0;
+        gameOver = false;
     }
 
     // Update is called once per frame
@@ -30,9 +28,7 @@ public class GameController : MonoBehaviour
 
     public void EndGame()
     {
-        Debug.Log("GAME OVER!");
         FindObjectOfType<CoinSpawner>().GetComponent<CoinSpawner>().DisableSpawning();
-
         gameObject.GetComponent<GameOverMenu>().GameOver();
     }
 

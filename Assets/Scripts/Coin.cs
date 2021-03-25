@@ -9,7 +9,6 @@ public class Coin : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("you picked up a coin!");
         GameObject.FindGameObjectWithTag("GameController").GetComponent<Score>().UpdateScore(coinValue);
         Destroy(gameObject);
     }

@@ -44,8 +44,6 @@ public class CoinSpawner : MonoBehaviour
 
         coin.transform.position = new Vector3(x,y,0f);
         PublishCoinSpawnedEvent();
-
-        Debug.Log("spawned coin!");
     }
 
     public void PublishCoinSpawnedEvent()

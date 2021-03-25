@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -10,8 +11,7 @@ public class GrammarController : MonoBehaviour
 
     private GrammarRecognizer gr;
     public GameObject character;
-
-
+    private AlienController alienController;
 
     // Start is called before the first frame update
     void Start()
@@ -28,30 +28,20 @@ public class GrammarController : MonoBehaviour
     {
         StringBuilder message = new StringBuilder();
         SemanticMeaning[] meanings = args.semanticMeanings;
-        string direction = "";
+
         foreach(SemanticMeaning meaning in meanings)
         {
             string keyString = meaning.key.Trim();
             string valueString = meaning.values[0].Trim();
-            message.Append("Key: " + keyString + " , Value: " + valueString + " ");
-            if(keyString == "direction")
+
+            message.Append($"({keyString}: {valueString}), ");
+
+            if(keyString == "action" && valueString == "move")
             {
-                direction = valueString;
+                MoveCommand(meanings);
             }
 
-            switch(valueString)
-            {
-                case "move":
-                    character.GetComponent<MovementController>().Move(direction);
-                    break;
-
-                default:
-                    break;
-            }
-            
         }
-
-
 
         Debug.Log(message);
     }
@@ -63,5 +53,41 @@ public class GrammarController : MonoBehaviour
             gr.OnPhraseRecognized -= Gr_OnPhraseRecognized;
             gr.Stop();
         }
+    }
+
+    private void MoveCommand(SemanticMeaning[] meanings)
+    {
+        StringBuilder message = new StringBuilder();
+        string alien = null;
+        string direction = null;
+        string distance = null;
+
+        foreach (SemanticMeaning meaning in meanings)
+        {
+            //string keyString = meaning.key.Trim();
+            //string valueString = meaning.values[0].Trim();
+            //message.Append($"({keyString}: {valueString}), ");
+
+            if(meaning.key.Trim() == "alien")
+            {
+                alien = meaning.values[0].Trim();
+            }
+
+            if(meaning.key.Trim() == "direction")
+            {
+                direction = meaning.values[0].Trim();
+            }
+
+            if (meaning.key.Trim() == "distance")
+            {
+                distance = meaning.values[0].Trim();
+            }
+
+        }
+
+        GameObject.FindGameObjectWithTag("Player").GetComponent<AlienController>().MoveAlien(alien, direction, Int32.Parse(distance));
+
+        Debug.Log($"alien:{alien}, direction:{direction}");
+
     }
 }

@@ -1,50 +1,87 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<grammar xml:lang="en" root="topLevel"
+<grammar xml:lang="en" root="root"
 tag-format="semantics/1.0" version="1.0"
 xmlns="http://www.w3.org/2001/06/grammar">
 
-	<rule id="topLevel">
+	<rule id="root">
 		<one-of>
 			<item>
-				<ruleref uri="#move" />
-			</item>
-			<item>
-				<ruleref uri="#play" />
+				<ruleref uri="#alien" />
+				<tag>out.alien=rules.latest();</tag>
 			</item>
 		</one-of>
 	</rule>
 
-	<rule id="play">
+	<rule id="alien">
 		<one-of>
-			<item>play</item>
-			<item>start</item>
+			<item>
+				green<tag>out.alien="green"</tag>
+			</item>
+			<item>
+				pink<tag>out.alien="pink"</tag>
+			</item>
+		</one-of>
+		<one-of>
+			<item>
+				<ruleref uri="#move"/>
+				<tag>out.action=rules.latest();</tag>
+			</item>
+			<item>
+				<ruleref uri="#hide"/>
+				<tag>out.action=rules.latest();</tag>
+			</item>
 		</one-of>
 	</rule>
-	
+
+	<rule id="hide">
+		<item>
+			hide<tag>out.action="hide"</tag>
+		</item>
+	</rule>
+
 	<rule id="move">
-		<tag>out.action="move";</tag>
-		<one-of>
-			<item>move</item>
-		</one-of>
-		<ruleref uri="#movedirection"/>
-		<tag>out.direction = rules.latest();</tag>
+		<item>
+			<item>
+				move<tag>out.action="move"</tag>
+			</item>
+			<ruleref uri="#direction"/>
+			<tag>out.direction=rules.latest();</tag>
+			<ruleref uri="#distance"/>
+			<tag>out.distance=rules.latest();</tag>
+		</item>
 	</rule>
 
-	<rule id="movedirection">
+	<rule id="direction">
 		<one-of>
-			<item>up</item>
-			<item>down</item>
-			<item>left</item>
-			<item>right</item>
+			<item>
+				up<tag>out="up"</tag>
+			</item>
+			<item>
+				down<tag>out="down"</tag>
+			</item>
+			<item>
+				left<tag>out="left"</tag>
+			</item>
+			<item>
+				right<tag>out="right"</tag>
+			</item>
 		</one-of>
 	</rule>
-	
-	
-	
-	
-	
-	<rule id="no" >
-		<item>no</item>
-	</rule>
 
+	<rule id="distance">
+		<one-of>
+			<item>
+				one<tag>out="1"</tag>
+			</item>
+			<item>
+				two<tag>out="2"</tag>
+			</item>
+			<item>
+				three<tag>out="3"</tag>
+			</item>
+			<item>
+				four<tag>out="4"</tag>
+			</item>
+		</one-of>
+	</rule>
 </grammar>

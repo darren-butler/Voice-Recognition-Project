@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovementController : MonoBehaviour
+public class Movement : MonoBehaviour
 {
     [SerializeField] private Transform movementTarget;
     [SerializeField] private float speed = 5.0f;
-    [SerializeField] private int distance = 1;
+    [SerializeField] private int distance = 10;
     [SerializeField] private LayerMask collisionLayer;
     private float horizontal = 0f;
     private float vertical = 0f;
@@ -31,7 +31,7 @@ public class MovementController : MonoBehaviour
                 {
                     movementTarget.position += new Vector3(horizontal * distance, 0f, 0f);
                 }
-            } 
+            }
             else if (Mathf.Abs(vertical) == 1f)
             {
                 if (!Physics2D.OverlapCircle(movementTarget.position + new Vector3(0f, vertical * distance, 0f), 0.2f, collisionLayer))
@@ -39,32 +39,34 @@ public class MovementController : MonoBehaviour
                     movementTarget.position += new Vector3(0f, vertical * distance, 0f);
                 }
             }
-        }else
+        }
+        else
         {
             vertical = horizontal = 0;
         }
     }
 
-    public void Move(string direction)
+    public void Move(string direction, int distance)
     {
         vertical = horizontal = 0;
-        switch(direction)
+        this.distance = distance;
+        switch (direction)
         {
             case "up":
                 vertical = 1f;
-                Debug.Log("moving down...");
+                Debug.Log("moving up");
                 break;
             case "down":
                 vertical = -1f;
-                Debug.Log("moving down...");
+                Debug.Log("moving down");
                 break;
             case "left":
                 horizontal = -1f;
-                Debug.Log("moving left...");
+                Debug.Log("moving left");
                 break;
             case "right":
                 horizontal = 1f;
-                Debug.Log("moving right...");
+                Debug.Log("moving right");
                 break;
             default:
                 break;

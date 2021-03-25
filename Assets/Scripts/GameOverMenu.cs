@@ -21,7 +21,6 @@ public class GameOverMenu : MonoBehaviour
 
     public void GameOver()
     {
-        Debug.Log("Game Over!");
         gameOverMenu.SetActive(true);
         Time.timeScale = 0;
     }

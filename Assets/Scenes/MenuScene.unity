@@ -618,7 +618,7 @@ GameObject:
   - component: {fileID: 1361461897}
   - component: {fileID: 1361461898}
   m_Layer: 0
-  m_Name: GrammarController
+  m_Name: MenuController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -647,10 +647,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1361461896}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e233883125774af48b497c6757aa867e, type: 3}
+  m_Script: {fileID: 11500000, guid: 402274f9a50213748b2d8349c6902a12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mm: {fileID: 2002377424}
+  character: {fileID: 0}
 --- !u!1 &1648082618
 GameObject:
   m_ObjectHideFlags: 0
