@@ -528,7 +528,7 @@ MonoBehaviour:
   coinPrefab: {fileID: 7782921419511954364, guid: 11d45fd2ebade32488e5931a3a10b7d6,
     type: 3}
   spawnDelay: 0
-  spawnInterval: 0.5
+  spawnInterval: 1
 --- !u!114 &317178057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7214,7 +7214,7 @@ MonoBehaviour:
   patrolPauseTimer: 0
   patrolPauseTime: 3
   targetAlien: {fileID: 0}
-  killRange: 1
+  killRange: 0.1
 --- !u!95 &2065377062
 Animator:
   serializedVersion: 3

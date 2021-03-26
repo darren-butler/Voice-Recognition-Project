@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Windows.Speech;
 
 public class GrammarController : MonoBehaviour
@@ -46,6 +47,11 @@ public class GrammarController : MonoBehaviour
                 HideCommand(meanings);
             }
 
+            if (keyString == "menu")
+            {
+                MenuCommand(meanings);
+            }
+
         }
 
         Debug.Log(message);
@@ -60,12 +66,49 @@ public class GrammarController : MonoBehaviour
         }
     }
 
+    private void MenuCommand(SemanticMeaning[] meanings)
+    {
+        foreach (SemanticMeaning meaning in meanings)
+        {
+
+            switch(meaning.values[0].Trim())
+            {
+                case "play":
+                    if (SceneManager.GetActiveScene().buildIndex == 0) 
+                    {
+                        GameObject.FindGameObjectWithTag("Menu").GetComponent<MainMenu>().Play();
+                    }
+                    else if (SceneManager.GetActiveScene().buildIndex == 1)
+                    {
+                        GameObject.FindGameObjectWithTag("GameController").GetComponent<PauseMenu>().ResumeGame();
+                    }
+                    break;
+                case "quit":
+                    if (SceneManager.GetActiveScene().buildIndex == 0)
+                    {
+                        GameObject.FindGameObjectWithTag("Menu").GetComponent<MainMenu>().Quit();
+                    }
+                    else if (SceneManager.GetActiveScene().buildIndex == 1)
+                    {
+                        GameObject.FindGameObjectWithTag("GameController").GetComponent<PauseMenu>().QuitGame();
+                    }
+                    break;
+                case "pause":
+                    if(SceneManager.GetActiveScene().buildIndex == 1) // check we're not in the main menu (player can't pause game in the main menu
+                    {
+                        GameObject.FindGameObjectWithTag("GameController").GetComponent<PauseMenu>().PauseGame();
+                    }
+                    break;
+            }
+
+        }
+
+    }
+
     private void HideCommand(SemanticMeaning[] meanings)
     {
         StringBuilder message = new StringBuilder();
         string alien = null;
-        string direction = null;
-        string distance = null;
 
         foreach (SemanticMeaning meaning in meanings)
         {

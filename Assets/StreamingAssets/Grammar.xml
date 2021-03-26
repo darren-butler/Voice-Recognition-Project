@@ -9,6 +9,75 @@ xmlns="http://www.w3.org/2001/06/grammar">
 				<ruleref uri="#alien" />
 				<tag>out.alien=rules.latest();</tag>
 			</item>
+			<item>
+				<ruleref uri="#play"/>
+			</item>
+			<item>
+				<ruleref uri="#quit"/>
+			</item>
+			<item>
+				<ruleref uri="#pause"/>
+			</item>
+		</one-of>
+	</rule>
+
+	<rule id="play">
+		<one-of>
+			<item>
+				<tag>out.menu="play"</tag>
+				<one-of>
+					<item>
+						play
+					</item>
+					<item>
+						start
+					</item>
+					<item>
+						continue
+					</item>
+					<item>
+						resume
+					</item>
+				</one-of>
+			</item>
+		</one-of>
+	</rule>
+
+	<rule id="quit">
+		<one-of>
+			<item>
+				<tag>out.menu="quit"</tag>
+				<one-of>
+					<item>
+						quit
+					</item>
+					<item>
+						exit
+					</item>
+					<item>
+						return
+					</item>
+					<item>
+						main menu
+					</item>
+				</one-of>
+			</item>
+		</one-of>
+	</rule>
+
+	<rule id="pause">
+		<one-of>
+			<item>
+				<tag>out.menu="pause"</tag>
+				<one-of>
+					<item>
+						pause
+					</item>
+					<item>
+						stop
+					</item>
+				</one-of>
+			</item>
 		</one-of>
 	</rule>
 
