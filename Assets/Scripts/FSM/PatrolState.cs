@@ -30,13 +30,26 @@ public class PatrolState : BaseState
             }
         }
         
-        
         animator.transform.position = Vector3.MoveTowards(animator.transform.position, target, fsmController.speed * Time.deltaTime);
+
+        foreach(GameObject alien in fsmController.aliens)
+        {
+            if(alien.GetComponent<Movement>().isHidden == false)
+            {
+                if (Vector3.Distance(animator.transform.position, alien.transform.position) <= fsmController.aggroRange)
+                {
+                    animator.SetTrigger("Chase");
+                    fsmController.targetAlien = alien;
+                }
+            }
+        }
+
+
     }
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateExit(animator, stateInfo, layerIndex);
-        animator.ResetTrigger("aggro");
+        animator.ResetTrigger("Chase");
     }
 }

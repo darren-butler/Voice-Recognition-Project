@@ -41,6 +41,11 @@ public class GrammarController : MonoBehaviour
                 MoveCommand(meanings);
             }
 
+            if (keyString == "action" && valueString == "hide")
+            {
+                HideCommand(meanings);
+            }
+
         }
 
         Debug.Log(message);
@@ -53,6 +58,24 @@ public class GrammarController : MonoBehaviour
             gr.OnPhraseRecognized -= Gr_OnPhraseRecognized;
             gr.Stop();
         }
+    }
+
+    private void HideCommand(SemanticMeaning[] meanings)
+    {
+        StringBuilder message = new StringBuilder();
+        string alien = null;
+        string direction = null;
+        string distance = null;
+
+        foreach (SemanticMeaning meaning in meanings)
+        {
+            if (meaning.key.Trim() == "alien")
+            {
+                alien = meaning.values[0].Trim();
+            }
+        }
+
+        GameObject.FindGameObjectWithTag("Player").GetComponent<AlienController>().HideAlien(alien);
     }
 
     private void MoveCommand(SemanticMeaning[] meanings)
@@ -87,7 +110,7 @@ public class GrammarController : MonoBehaviour
 
         GameObject.FindGameObjectWithTag("Player").GetComponent<AlienController>().MoveAlien(alien, direction, Int32.Parse(distance));
 
-        Debug.Log($"alien:{alien}, direction:{direction}");
+        //Debug.Log($"alien:{alien}, direction:{direction}");
 
     }
 }

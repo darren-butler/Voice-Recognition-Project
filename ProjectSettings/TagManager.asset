@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Item
   - ScoreText
+  - Alien
   layers:
   - Default
   - TransparentFX

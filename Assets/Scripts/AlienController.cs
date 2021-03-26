@@ -19,6 +19,21 @@ public class AlienController : MonoBehaviour
 
     }
 
+    public void HideAlien(string alien)
+    {
+        switch (alien)
+        {
+            case "green":
+                green.GetComponent<Movement>().Hide();
+                break;
+            case "pink":
+                pink.GetComponent<Movement>().Hide();
+                break;
+            default:
+                break;
+        }
+    }
+
     public void MoveAlien(string alien, string direction, int distance)
     {
         switch (alien)

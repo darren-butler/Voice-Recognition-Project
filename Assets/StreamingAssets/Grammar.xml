@@ -26,6 +26,7 @@ xmlns="http://www.w3.org/2001/06/grammar">
 				<ruleref uri="#move"/>
 				<tag>out.action=rules.latest();</tag>
 			</item>
+			<item>hide</item>
 			<item>
 				<ruleref uri="#hide"/>
 				<tag>out.action=rules.latest();</tag>
