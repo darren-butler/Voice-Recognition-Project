@@ -8,6 +8,7 @@ TagManager:
   - ScoreText
   - Alien
   - Menu
+  - Audio
   layers:
   - Default
   - TransparentFX

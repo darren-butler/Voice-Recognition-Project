@@ -10,6 +10,7 @@ public class Coin : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject.FindGameObjectWithTag("GameController").GetComponent<Score>().UpdateScore(coinValue);
+        GameObject.FindGameObjectWithTag("GameController").GetComponent<SoundController>().PlayCoinSound();
         Destroy(gameObject);
     }
 }

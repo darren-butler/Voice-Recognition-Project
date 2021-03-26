@@ -13,7 +13,7 @@ public class Movement : MonoBehaviour
     public bool isHidden = false;
 
     private float hideTimer;
-    private float hideTime = 3f;
+    private float hideTime = 5f;
 
 
     // Start is called before the first frame update

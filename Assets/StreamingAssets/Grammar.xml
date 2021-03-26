@@ -18,6 +18,9 @@ xmlns="http://www.w3.org/2001/06/grammar">
 			<item>
 				<ruleref uri="#pause"/>
 			</item>
+			<item>
+				<ruleref uri="#restart"/>
+			</item>
 		</one-of>
 	</rule>
 
@@ -80,6 +83,21 @@ xmlns="http://www.w3.org/2001/06/grammar">
 			</item>
 		</one-of>
 	</rule>
+	<rule id="restart">
+		<one-of>
+			<item>
+				<tag>out.menu="restart"</tag>
+				<one-of>
+					<item>
+						restart
+					</item>
+					<item>
+						again
+					</item>
+				</one-of>
+			</item>
+		</one-of>
+	</rule>
 
 	<rule id="alien">
 		<one-of>
@@ -104,9 +122,22 @@ xmlns="http://www.w3.org/2001/06/grammar">
 	</rule>
 
 	<rule id="hide">
-		<item>
-			hide<tag>out.action="hide"</tag>
-		</item>
+		<tag>out.action="hide"</tag>
+		<one-of>
+			<item>
+				hide
+			</item>
+			<item>
+				disappear
+			</item>
+			<item>
+				reflector
+			</item>
+			<item>
+				shields
+			</item>
+		</one-of>
+
 	</rule>
 
 	<rule id="move">

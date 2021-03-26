@@ -25,9 +25,11 @@ public class AlienController : MonoBehaviour
         {
             case "green":
                 green.GetComponent<Movement>().Hide();
+                GameObject.FindGameObjectWithTag("GameController").GetComponent<SoundController>().PlayShieldSound();
                 break;
             case "pink":
                 pink.GetComponent<Movement>().Hide();
+                GameObject.FindGameObjectWithTag("GameController").GetComponent<SoundController>().PlayShieldSound();
                 break;
             default:
                 break;

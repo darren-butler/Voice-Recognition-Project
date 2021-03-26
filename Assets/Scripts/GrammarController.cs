@@ -99,6 +99,12 @@ public class GrammarController : MonoBehaviour
                         GameObject.FindGameObjectWithTag("GameController").GetComponent<PauseMenu>().PauseGame();
                     }
                     break;
+                case "restart":
+                    if (SceneManager.GetActiveScene().buildIndex == 1) // check we're not in the main menu (player can't pause game in the main menu
+                    {
+                        GameObject.FindGameObjectWithTag("GameController").GetComponent<GameOverMenu>().RestartGame();
+                    }
+                    break;
             }
 
         }
