@@ -6,7 +6,6 @@ public class AlienController : MonoBehaviour
 {
     [SerializeField] private GameObject green;
     [SerializeField] private GameObject pink;
-    [SerializeField] private float speed = 50f;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +27,6 @@ public class AlienController : MonoBehaviour
                 green.GetComponent<Movement>().Move(direction, distance);
                 break;
             case "pink":
-                Debug.Log($"moving pink {direction}");
                 pink.GetComponent<Movement>().Move(direction, distance);
                 break;
             default:
